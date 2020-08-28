@@ -1,0 +1,24 @@
+.div-book {
+    position: relative;
+    background-color: aquamarine;
+    min-width: 60px;
+    min-height: 100px;
+}
+
+.div-title {
+    position: inherit;
+    min-width: 40px;
+    min-height: 20px;
+}
+
+.div-author {
+    position: inherit;
+    min-width: 40px;
+    min-height: 20px;
+}
+
+.div-pages {
+    position: inherit;
+    min-width: 40px;
+    min-height: 20px;
+}
