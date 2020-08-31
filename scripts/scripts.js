@@ -17,9 +17,10 @@ Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? ' has already read' : ' not read yet'}`
 }
 
-const addBookToLibrary = (book) => myLibrary.push(book);
-
-const renderAddBookForm = () => console.log("We're going to add a book form here!");
+const addBookToLibrary = (event) => {
+    console.log(event.target);
+    myLibrary.push(book);
+}
 
 const renderLibrary = () => {
     myLibrary.forEach(book => renderBook(book))
@@ -46,6 +47,38 @@ const renderBook = (book) => {
     divBook.appendChild(divPages);
 
     libraryContainer.appendChild(divBook);
+}
+
+//todo add classes to form and inputs
+const renderAddBookForm = () => {
+    let form = document.createElement('form');
+
+    let titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.placeholder = 'Title';
+    form.appendChild(titleInput);
+
+    let authorInput = document.createElement('input');
+    authorInput.type = 'text';
+    authorInput.placeholder = 'Author';
+    form.appendChild(authorInput);
+
+    let pagesInput = document.createElement('input');
+    pagesInput.placeholder = 'Number of Pages';
+    pagesInput.type = 'number';
+    form.appendChild(pagesInput);
+
+    let readCheckbox = document.createElement('input');
+    readCheckbox.type = 'checkbox';
+    form.appendChild(readCheckbox);
+
+    let submitButton = document.createElement('input');
+    submitButton.type = 'submit';
+    submitButton.innerHTML = 'Save';
+    submitButton.addEventListener('click', addBookToLibrary)
+    form.appendChild(submitButton);
+
+    libraryContainer.appendChild(form);
 }
 
 addButton.addEventListener('click', renderAddBookForm);
