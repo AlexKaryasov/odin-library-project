@@ -22,7 +22,8 @@ const addBookToLibrary = (form) => {
     let titleInput = document.querySelector('#titleInput');
     let authorInput = document.querySelector('#authorInput');
     let pagesInput = document.querySelector('#pagesInput');
-    myLibrary.push(new Book(titleInput.value, authorInput.value, pagesInput.value, true));
+    let readCheckbox = document.querySelector('#readCheckbox');
+    myLibrary.push(new Book(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked));
     debugger;
 }
 
