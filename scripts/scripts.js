@@ -24,11 +24,17 @@ const addBookToLibrary = (form) => {
     let pagesInput = document.querySelector('#pagesInput');
     let readCheckbox = document.querySelector('#readCheckbox');
     myLibrary.push(new Book(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked));
-    debugger;
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    renderLibrary();
 }
 
 const renderLibrary = () => {
-    myLibrary.forEach(book => renderBook(book))
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    if (myLibrary) {
+        myLibrary.forEach(book => renderBook(book))
+    } else {
+        myLibrary = [];
+    }
 }
 
 const renderBook = (book) => {
@@ -91,3 +97,5 @@ const renderAddBookForm = () => {
 }
 
 addButton.addEventListener('click', renderAddBookForm);
+
+renderLibrary();
