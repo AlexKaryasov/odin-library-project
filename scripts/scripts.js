@@ -17,9 +17,13 @@ Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? ' has already read' : ' not read yet'}`
 }
 
-const addBookToLibrary = (event) => {
-    console.log(event.target);
-    myLibrary.push(book);
+const addBookToLibrary = (form) => {
+    console.log(form);
+    let titleInput = document.querySelector('#titleInput');
+    let authorInput = document.querySelector('#authorInput');
+    let pagesInput = document.querySelector('#pagesInput');
+    myLibrary.push(new Book(titleInput.value, authorInput.value, pagesInput.value, true));
+    debugger;
 }
 
 const renderLibrary = () => {
@@ -54,28 +58,32 @@ const renderAddBookForm = () => {
     let form = document.createElement('form');
 
     let titleInput = document.createElement('input');
+    titleInput.id = 'titleInput';
     titleInput.type = 'text';
     titleInput.placeholder = 'Title';
     form.appendChild(titleInput);
 
     let authorInput = document.createElement('input');
+    authorInput.id = 'authorInput';
     authorInput.type = 'text';
     authorInput.placeholder = 'Author';
     form.appendChild(authorInput);
 
     let pagesInput = document.createElement('input');
+    pagesInput.id = 'pagesInput';
     pagesInput.placeholder = 'Number of Pages';
     pagesInput.type = 'number';
     form.appendChild(pagesInput);
 
     let readCheckbox = document.createElement('input');
+    readCheckbox.id = 'readCheckbox';
     readCheckbox.type = 'checkbox';
     form.appendChild(readCheckbox);
 
     let submitButton = document.createElement('input');
     submitButton.type = 'submit';
     submitButton.innerHTML = 'Save';
-    submitButton.addEventListener('click', addBookToLibrary)
+    submitButton.addEventListener('click', () => addBookToLibrary(form))
     form.appendChild(submitButton);
 
     libraryContainer.appendChild(form);
