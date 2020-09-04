@@ -1,3 +1,32 @@
+body {
+    background-color: #f3f6f9;
+    opacity: 0.7;
+}
+
+header {
+    position: relative;
+    background-color: #a20021;
+    color:white;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    top: 0px;
+    padding: 10px;
+}
+
+.add-button-container {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+}
+
+.add-button {
+    min-width: 50px;
+    min-height: 30px;
+    background-color: #547aa5;
+    color: white;
+}
+
 .library-container {
     display: flex;
     flex-direction: row;
@@ -7,24 +36,27 @@
 .div-book {
     position: relative;
     background-color: aquamarine;
-    min-width: 60px;
-    min-height: 100px;
+    min-width: 200px;
+    min-height: 300px;
+    margin: 20px;
 }
 
 .div-title {
-    position: inherit;
-    min-width: 40px;
-    min-height: 20px;
+    position: absolute;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    top: 20px;
 }
 
 .div-author {
-    position: inherit;
-    min-width: 40px;
-    min-height: 20px;
+    position: relative;
+    font-size: 1em;
 }
 
 .div-pages {
-    position: inherit;
+    position: absolute;
     min-width: 40px;
     min-height: 20px;
+    bottom: 20px;
 }
