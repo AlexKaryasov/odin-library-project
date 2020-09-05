@@ -13,7 +13,7 @@ function Book(title, author, pages, read) {
     // }
 }
 
-Book.prototype.info = function() {
+Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? ' has already read' : ' not read yet'}`
 }
 
@@ -29,6 +29,7 @@ const addBookToLibrary = (form) => {
 }
 
 const renderLibrary = () => {
+    libraryContainer.querySelectorAll('*').forEach(node => node.remove());
     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
     if (myLibrary) {
         myLibrary.forEach(book => renderBook(book))
@@ -57,27 +58,53 @@ const renderBook = (book) => {
     divPages.textContent = book.pages;
     divBook.appendChild(divPages);
 
+    let bookActionButtonsDiv = document.createElement('div');
+    bookActionButtonsDiv.classList.add('book-action-buttons-div');
+
+    let deleteButton = document.createElement('button');
+    deleteButton.innerHTML = 'Delete';
+    deleteButton.addEventListener('click', () => deleteBook(book));
+    bookActionButtonsDiv.appendChild(deleteButton);
+
+    let markAsReadButton = document.createElement('button');
+    markAsReadButton.innerHTML = 'Mark As Read';
+    markAsReadButton.addEventListener('click', () => markBookAsRead(book));
+    bookActionButtonsDiv.appendChild(markAsReadButton);
+    divBook.appendChild(bookActionButtonsDiv);
+
     libraryContainer.appendChild(divBook);
 }
 
-//todo add classes to form and inputs
+const deleteBook = (book) => {
+    let bookIndex = myLibrary.indexOf(book);
+    if (bookIndex !== -1) {
+        myLibrary.splice(bookIndex, 1);
+    }
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    renderLibrary();
+}
+
 const renderAddBookForm = () => {
     let form = document.createElement('form');
+    form.classList.add('book-form');
 
     let titleInput = document.createElement('input');
     titleInput.id = 'titleInput';
+    titleInput.classList.add('book-form-input');
     titleInput.type = 'text';
     titleInput.placeholder = 'Title';
     form.appendChild(titleInput);
 
     let authorInput = document.createElement('input');
     authorInput.id = 'authorInput';
+    authorInput.classList.add('book-form-input');
     authorInput.type = 'text';
     authorInput.placeholder = 'Author';
     form.appendChild(authorInput);
 
     let pagesInput = document.createElement('input');
     pagesInput.id = 'pagesInput';
+    pagesInput.classList.add('book-form-input');
     pagesInput.placeholder = 'Number of Pages';
     pagesInput.type = 'number';
     form.appendChild(pagesInput);
@@ -85,9 +112,15 @@ const renderAddBookForm = () => {
     let readCheckbox = document.createElement('input');
     readCheckbox.id = 'readCheckbox';
     readCheckbox.type = 'checkbox';
+
+    let readCheckboxLabel = document.createElement('label');
+    readCheckboxLabel.htmlFor = 'readCheckbox';
+    readCheckboxLabel.innerHTML = 'I read this book';
+    form.appendChild(readCheckboxLabel);
     form.appendChild(readCheckbox);
 
     let submitButton = document.createElement('input');
+    submitButton.classList.add('book-form-submit-button')
     submitButton.type = 'submit';
     submitButton.innerHTML = 'Save';
     submitButton.addEventListener('click', () => addBookToLibrary(form))

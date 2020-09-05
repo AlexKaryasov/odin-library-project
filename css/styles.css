@@ -30,7 +30,6 @@ header {
 .library-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
 }
 
 .div-book {
@@ -59,4 +58,30 @@ header {
     min-width: 40px;
     min-height: 20px;
     bottom: 20px;
+}
+
+.book-form {
+    position: relative;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.book-form-input {
+    padding: 5px;
+    margin: 5px 0 10px 0;
+}
+
+.book-form-submit-button {
+    position: absolute;
+    background-color: #547aa5;
+    color: white;
+    bottom: 20px;
+    align-items: center;
+}
+
+.book-action-buttons-div {
+    position: absolute;
+    bottom: 0px;
 }
