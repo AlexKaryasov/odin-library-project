@@ -41,6 +41,9 @@ const renderLibrary = () => {
 const renderBook = (book) => {
     let divBook = document.createElement('div');
     divBook.classList.add('div-book');
+    if (book.read) {
+        divBook.classList.add('read');
+    }
 
     let divTitle = document.createElement('div');
     divTitle.classList.add('div-title');
@@ -63,13 +66,19 @@ const renderBook = (book) => {
 
     let deleteButton = document.createElement('button');
     deleteButton.innerHTML = 'Delete';
+    deleteButton.classList.add('book-action-button');
+    deleteButton.classList.add('delete-button');
     deleteButton.addEventListener('click', () => deleteBook(book));
     bookActionButtonsDiv.appendChild(deleteButton);
 
-    let markAsReadButton = document.createElement('button');
-    markAsReadButton.innerHTML = 'Mark As Read';
-    markAsReadButton.addEventListener('click', () => markBookAsRead(book));
-    bookActionButtonsDiv.appendChild(markAsReadButton);
+    if (!book.read) {
+        let markAsReadButton = document.createElement('button');
+        markAsReadButton.innerHTML = 'Mark As Read';
+        markAsReadButton.classList.add('book-action-button');
+        markAsReadButton.classList.add('mark-as-read-button');
+        markAsReadButton.addEventListener('click', () => markBookAsRead(book));
+        bookActionButtonsDiv.appendChild(markAsReadButton);
+    }
     divBook.appendChild(bookActionButtonsDiv);
 
     libraryContainer.appendChild(divBook);
@@ -79,6 +88,15 @@ const deleteBook = (book) => {
     let bookIndex = myLibrary.indexOf(book);
     if (bookIndex !== -1) {
         myLibrary.splice(bookIndex, 1);
+    }
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    renderLibrary();
+}
+
+const markBookAsRead = (book) => {
+    let bookIndex = myLibrary.indexOf(book);
+    if (bookIndex !== -1) {
+        myLibrary[bookIndex].read = true;
     }
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
     renderLibrary();

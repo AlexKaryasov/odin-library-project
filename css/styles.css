@@ -30,6 +30,7 @@ header {
 .library-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .div-book {
@@ -60,12 +61,17 @@ header {
     bottom: 20px;
 }
 
+.read {
+    background-color: olive;
+}
+
 .book-form {
     position: relative;
     background-color: aquamarine;
     display: flex;
     flex-direction: column;
     margin: 20px;
+    min-height: 300px;
 }
 
 .book-form-input {
@@ -77,11 +83,25 @@ header {
     position: absolute;
     background-color: #547aa5;
     color: white;
-    bottom: 20px;
+    bottom: 0px;
     align-items: center;
 }
 
 .book-action-buttons-div {
     position: absolute;
     bottom: 0px;
+}
+
+.book-action-button {
+    margin: 0 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.delete-button {
+    background-color: red;
+}
+
+.mark-as-read-button {
+    background-color: #547aa5;
 }
