@@ -3,18 +3,59 @@ let libraryContainer = document.querySelector('#library-container')
 let addButton = document.querySelector('#add-button');
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    // this.info = function() {
-    //     return `${title} by ${author}, ${pages} pages, ${read ? ' has already read' : ' not read yet'}`
-    // }
-}
+// function Book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+//     // this.info = function() {
+//     //     return `${title} by ${author}, ${pages} pages, ${read ? ' has already read' : ' not read yet'}`
+//     // }
+// }
 
-Book.prototype.info = function () {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? ' has already read' : ' not read yet'}`
+class Book {
+    constructor(title, author, pages, read) {
+        this.titleValue = title;
+        this.authorValue = author;
+        this.pagesValue = pages;
+        this.readValue = read;
+    }
+
+    get titleValue() {
+        return this.title;
+    }
+
+    set titleValue(title) {
+        this.title = title;
+    }
+
+    get authorValue() {
+        return this.author;
+    }
+
+    set authorValue(author) {
+        this.author = author;
+    }
+
+    get pagesValue() {
+        return this.pages;
+    }
+
+    set pagesValue(pages) {
+        this.pages = pages;
+    }
+
+    get readValue() {
+        return this.read;
+    }
+
+    set readValue(read) {
+        this.read = read;
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? ' has already read' : ' not read yet'}`
+    }
 }
 
 const addBookToLibrary = (form) => {
